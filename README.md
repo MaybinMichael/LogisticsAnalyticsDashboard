@@ -7,7 +7,7 @@ Functionalities:
   Descriptive statistics of continuous features and categorical features are available. Downloading is enabled.
   User can post queries on the app.
 
-Video demonstration of the app is available in the following link: xxxx
+Video demonstration of the app is available in the following link: (https://www.youtube.com/watch?v=2mgeeMDgi4Q&ab_channel=maybinmichael)
 
 Sample input files are available in the Input folder (path: website>Input)
 
