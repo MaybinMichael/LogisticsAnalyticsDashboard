@@ -1,4 +1,4 @@
-# LogisticsAnalyticsDashboard
+# SalesAnalyticsDashboard
 This app helps users to analyze sales data!
 
 Functionalities:
