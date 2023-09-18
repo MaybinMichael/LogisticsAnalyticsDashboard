@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<body>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    {% include 'navbar.html' %}
+
+    <!--output from analytics-->
+    {% if something %}
+
+        <!--
+        <div class="row">
+            <div class="column">
+                <div class="card" style="width: 18rem;">
+                    <div class="card-body">
+                        <h6 class="card-subtitle mb-2 text-body-secondary text-center">Total Sale</h6>
+                        <h5 class="card-title text-center">${{ total_sale }}M</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="column">
+                <div class="card" style="width: 18rem;">
+                    <div class="card-body">
+                        <h6 class="card-subtitle mb-2 text-body-secondary text-center">Profit</h6>
+                        <h5 class="card-title text-center">${{ profit }}M</h5>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+<!--
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Float four columns side by side */
+.column1 {
+  float: left;
+  width: 20%;
+  padding: 0 10px;
+}
+.column2 {
+  float: left;
+  width: 60%;
+  padding: 0 10px;
+}
+
+/* Remove extra left and right margins, due to padding */
+.row {margin: 0 -2px;}
+
+/* Clear floats after the columns */
+/*
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}*/
+
+/* Responsive columns */
+@media screen and (max-width: 600px) {
+  .column {
+    width: 100%;
+    display: block;
+    margin-bottom: 20px;
+  }
+}
+
+/* Style the counter cards */
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  padding: 16px;
+  text-align: center;
+  background-color: #f1f1f1;
+}
+</style>
+        <br/>
+        <div class="row">
+            <div class="column1">
+                <div class="card">
+                    <h5>Total Sales</h5>
+                    <h3>$total_sale M</h3>
+
+                </div>
+            </div>
+            <div class="column1">
+                <div class="card">
+                    <h5>Profit</h5>
+                    <h3>$profit M</h3>
+                </div>
+            </div>
+            <div class="column2">
+                <img src="/website/plots_store/plot_sales_country_wise.jpg" width="850" height="400">
+            </div>
+        </div>
+
+
+        <div>
+        <img src="/website/plots_store/plot_sales_month_wise.jpg" width="600" height="200">
+            <img src="/website/plots_store/plot_gross_sales_month_country_wise.jpg" width="600" height="500">
+
+            <img src="/website/plots_store/plot_sales_country_wise.jpg" width="850" height="400">
+        </div>
+-->
+<style>
+.grid-container {
+  display: grid;
+  gap: 1px;
+  #background-color: #2196F3;
+  padding: 5px;
+}
+
+.grid-item {
+  #background-color: rgba(200, 200, 200, 0.8);
+  text-align: center;
+  padding: 5px;
+  font-size: 30px;
+}
+
+.item1 {
+  grid-column: 1 ;
+  grid-row: 1;
+}
+
+.item2 {
+  grid-column: 2 ;
+  grid-row: 1;
+}
+
+.item3 {
+  grid-column: 3 / span 2;
+  grid-row: 1 / span 2;
+}
+.item4 {
+  grid-column: 1 / span 2;
+  grid-row: 2;
+}
+
+.item5 {
+  grid-column: 1 / span 2;
+  grid-row: 3;
+}
+.item6 {
+  grid-column: 3 / span 2;
+  grid-row: 3;
+}
+
+/* Style the counter cards */
+.text_card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  padding: 15px;
+  text-align: center;
+  background-color: #f1f1f1;
+
+}
+.img_card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  padding: 1px 15px 15px 15px;
+  text-align: left;
+  #vertical-align: text-top;
+  background-color: #f1f1f1;
+
+}
+p1 {
+  font-size: 16px;
+  padding: 1px
+}
+p2 {
+  font-size: 10px;
+}
+</style>
+
+<div class="grid-container">
+    <div class="grid-item item1">
+        <div class="text_card">
+                <h5>Total Sales</h5>
+                <h3>${{ total_sale }}M</h3>
+        </div>
+    </div>
+    <div class="grid-item item2">
+        <div class="text_card">
+                    <h5>Profit</h5>
+                    <h3>${{ profit }}M</h3>
+                </div>
+    </div>
+
+    <div class="grid-item item3">
+        <div class="img_card">
+            <p1>Sales</p1><p2> By Country/Region</p2><br/>
+            <img src="/website/plots_store/plot_sales_country_wise.jpg" width="650" height="300">
+        </div>
+    </div>
+
+    <div class="grid-item item4">
+        <div class="img_card">
+            <p1>Sales</p1><p2> By Month</p2><br/>
+            <img src="/website/plots_store/plot_sales_month_wise.jpg" width="600" height="200">
+        </div>
+    </div>
+
+    <div class="grid-item item5">
+        <div class="img_card">
+            <p1>Gross Sales</p1><p2> By Month & Year</p2><br/>
+            <img src="/website/plots_store/plot_gross_sales_month_year_wise.jpg" width="500" height="300">
+        </div>
+    </div>
+
+    <div class="grid-item item6">
+        <div class="img_card">
+            <p1>Product</p1><p2> By Units & Discounts</p2><br/>
+            <img src="/website/plots_store/plot_product_units_discount.jpg" width="500" height="300">
+        </div>
+    </div>
+</div>
+
+    {% else %}
+        <p>Please upload a file</p>
+    {% endif %}
+</body>
+</html>

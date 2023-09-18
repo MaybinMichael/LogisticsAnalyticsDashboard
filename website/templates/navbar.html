@@ -1,0 +1,31 @@
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <div class="container-fluid">
+
+    <a class="navbar-brand" href="{% url 'home' %}">
+        <img src="/website/icons/logo.png" alt="HTML5 Icon" style="width:35px;height:35px;">
+        SALES ANALYTICS
+    </a>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+
+          <a class="nav-link active" aria-current="page" href="{% url 'home' %}">
+              <img src="/website/icons/home.png" alt="HTML5 Icon" style="width:20px;height:17px;">
+              Home
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'dashboard_page' %}">
+              <img src="/website/icons/dashboard_icon.png" alt="HTML5 Icon" style="width:20px;height:20px;">
+              Dashboard
+          </a>
+        </li>
+      </ul>
+      <form class="d-flex" role="search">
+        <input class="form-control me-2" type="search" placeholder="Ask about your data" aria-label="Search">
+        <button class="btn btn-outline-success" type="submit" >Search</button>
+      </form>
+    </div>
+  </div>
+</nav>

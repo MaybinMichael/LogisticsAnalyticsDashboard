@@ -1,0 +1,4 @@
+13:34:59,472 website.analytics.ProcurementAnalytics.2325038260480 ERROR User uploaded file with formats other than .xlsx, .xls or .csv
+13:36:59,361 django.utils.autoreload INFO C:\Users\HP\PycharmProjects\pythonProject\LogisticsAnalyticsDashboard\website\analytics.py changed, reloading.
+13:39:03,297 django.utils.autoreload INFO C:\Users\HP\PycharmProjects\pythonProject\LogisticsAnalyticsDashboard\website\analytics.py changed, reloading.
+15:15:54,410 django.utils.autoreload INFO C:\Users\HP\PycharmProjects\pythonProject\LogisticsAnalyticsDashboard\website\analytics.py changed, reloading.
