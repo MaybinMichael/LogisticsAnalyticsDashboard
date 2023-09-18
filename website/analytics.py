@@ -23,6 +23,7 @@ class ProcurementAnalytics():
             self._instance_logger = self._class_logger.getChild(str(id(self)))
             flag = self.read_document(file)
             if flag:
+                self.cont_var=[]
                 self.clean_folder()
                 self.preprocessing()
                 self.summation()
@@ -30,6 +31,8 @@ class ProcurementAnalytics():
                 self.plot_sale_month_wise()
                 self.plot_sale_country_wise()
                 self.plot_product_units_discount()
+                self.describe_data()
+                self.plot_product_sales()
             else:
                 self.total_sale = 0
                 self.profit = 0
@@ -198,6 +201,65 @@ class ProcurementAnalytics():
             dir = 'website/plots_store'
             for f in os.listdir(dir):
                 os.remove(os.path.join(dir, f))
+
+        def describe_data(self):
+            # Summary of continuous type data
+            df_subset = self.df[self.df["Year"] == 2014]
+            self.cont_var = ["Units Sold", "Manufacturing Price", "Sale Price", "Gross Sales", "Discounts", "Sales", "COGS", "Profit"]
+            cont_data_summary = pd.DataFrame(data=None, index=self.cont_var)
+            cont_data_summary = cont_data_summary.assign(Mean=round(df_subset[self.cont_var].mean(),2))
+            cont_data_summary = cont_data_summary.assign(Standard_Deviation=round(df_subset[self.cont_var].std(),2))
+            cont_data_summary = cont_data_summary.assign(Variance=round(df_subset[self.cont_var].var(),2))
+            cont_data_summary = cont_data_summary.assign(Min=df_subset[self.cont_var].min())
+            cont_data_summary = cont_data_summary.assign(Max=df_subset[self.cont_var].max())
+            cont_data_summary = cont_data_summary.assign(First_Quartile=df_subset[self.cont_var].quantile(0.25))
+            cont_data_summary = cont_data_summary.assign(Median=df_subset[self.cont_var].median())
+            cont_data_summary = cont_data_summary.assign(Third_Quartile=df_subset[self.cont_var].quantile(0.75))
+            cont_data_summary.reset_index(inplace=True)
+
+            fig = go.Figure(data=[
+                go.Table(
+                    #columnorder=[1, 2,3,4,5,6,7,8],
+                    #columnwidth=[10, 10, 10, 10, 10, 10, 10, 10],
+                    header=dict(values=list(cont_data_summary.columns), align='center'),
+                    cells=dict(values=cont_data_summary.values.transpose(),
+                               fill_color=[["white", "lightgrey"] * cont_data_summary.shape[0]],
+                               align='center',
+                               height=30
+                               )
+                )
+            ])
+            fig.update_layout(width=1000,
+                              height=300,
+                              margin_b=0,
+                              margin_l=0,
+                              margin_r=0,
+                              margin_t=0,
+                              paper_bgcolor='#f1f1f1',
+                              )
+            fig.write_image("website/plots_store/plot_descriptive_statistics.jpg", scale=5)
+
+
+        def plot_product_sales(self):
+            df_subset = self.df[self.df["Year"] == 2014]
+            # get subset of data with Year, Month, Gross Sales
+            df_subset = df_subset[["Product", "Sales","Country"]]
+            df_subset = pd.pivot_table(df_subset, values=['Sales'], index=['Product',"Country"],
+                                       aggfunc=np.sum)
+            df_subset = df_subset.reset_index().rename_axis(None, axis=1)
+
+            fig = px.bar(df_subset, x="Sales", y="Product", color='Country', orientation='h',
+                         hover_data=["Sales", "Country"],
+                         height=400,
+                         )
+            fig.update_layout(margin_b=0,
+                              margin_l=0,
+                              margin_r=0,
+                              margin_t=0,
+                              paper_bgcolor='#f1f1f1',
+                              )
+
+            fig.write_image("website/plots_store/plot_product_sales.jpg")
 
 
     except Exception as e:
