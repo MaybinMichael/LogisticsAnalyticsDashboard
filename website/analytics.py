@@ -5,6 +5,7 @@ import plotly.express as px
 import plotly.graph_objects as go
 import logging
 import os
+import plotly.offline as opy
 
 logging.basicConfig(filename="website/logs/log_file",
                         filemode='a',
@@ -27,12 +28,12 @@ class ProcurementAnalytics():
                 self.clean_folder()
                 self.preprocessing()
                 self.summation()
-                self.plot_sales_month_year_wise()
-                self.plot_sale_month_wise()
-                self.plot_sale_country_wise()
-                self.plot_product_units_discount()
+                self.fig_plot_sales_month_year_wise = self.plot_sales_month_year_wise()
+                self.fig_plot_sale_month_wise = self.plot_sale_month_wise()
+                self.fig_plot_sales_country_wise = self.plot_sale_country_wise()
+                self.fig_plot_product_units_discount = self.plot_product_units_discount()
                 self.describe_data()
-                self.plot_product_sales()
+                self.fig_plot_product_sales = self.plot_product_sales()
             else:
                 self.total_sale = 0
                 self.profit = 0
@@ -71,11 +72,20 @@ class ProcurementAnalytics():
             df_subset = df_subset.sort_values('Month', key=lambda x: pd.Categorical(x, categories=months, ordered=True))
 
             fig = px.line(df_subset, x="Month", y="Gross Sales", color='Year', markers=True)
-            fig.update_layout(
-                paper_bgcolor='#f1f1f1',
+            fig.update_layout(width=700,
+                              height=300,
+                              margin_b=0,
+                              margin_l=0,
+                              margin_r=0,
+                              margin_t=0,
+                              paper_bgcolor='rgba(0, 0, 0, 0)',
             )
-
-            fig.write_image("website/plots_store/plot_gross_sales_month_year_wise.jpg")
+            div = opy.plot(fig, auto_open=False, output_type='div')
+            return div
+            #fig.write_image("website/plots_store/plot_gross_sales_month_year_wise.jpg")
+            #fig.write_html("website/plots_store/plot_gross_sales_month_year_wise.html",
+                           #full_html=False
+            #               )
 
         def summation(self):
             df_subset = self.df[self.df["Year"] == 2014]
@@ -100,8 +110,17 @@ class ProcurementAnalytics():
             fig.update_layout(
                 paper_bgcolor='#f1f1f1',
             )
-
-            fig.write_image("website/plots_store/plot_sales_month_wise.jpg")
+            fig.update_layout(width=600,
+                              height=187,
+                              margin_b=0,
+                              margin_l=0,
+                              margin_r=0,
+                              margin_t=0,
+                              paper_bgcolor='rgba(0, 0, 0, 0)',
+                              )
+            div = opy.plot(fig, auto_open=False, output_type='div')
+            return div
+            #fig.write_image("website/plots_store/plot_sales_month_wise.jpg")
 
         def plot_sale_country_wise(self):
             df_subset = self.df[self.df["Year"] == 2014]
@@ -122,7 +141,7 @@ class ProcurementAnalytics():
             fig = px.scatter_geo(df_subset, locations="iso_alpha", color="Country",
                                  hover_name="Country", size="Sales",
                                  )
-            fig.update_layout(height=300, margin={"r": 0, "t": 0, "l": 0, "b": 0})
+            #fig.update_layout(height=300, margin={"r": 0, "t": 0, "l": 0, "b": 0})
             fig.update_geos(
                 landcolor='darkturquoise',
                 oceancolor="LightBlue",
@@ -130,8 +149,17 @@ class ProcurementAnalytics():
             fig.update_layout(
                 paper_bgcolor='#f1f1f1',
             )
-
-            fig.write_image("website/plots_store/plot_sales_country_wise.jpg")
+            fig.update_layout(width=600,
+                              height=300,
+                              margin_b=0,
+                              margin_l=0,
+                              margin_r=0,
+                              margin_t=0,
+                              paper_bgcolor='rgba(0, 0, 0, 0)',
+                              )
+            div = opy.plot(fig, auto_open=False, output_type='div')
+            return div
+            #fig.write_image("website/plots_store/plot_sales_country_wise.jpg")
 
         def plot_product_units_discount(self):
             df_subset = self.df[self.df["Year"] == 2014]
@@ -178,11 +206,18 @@ class ProcurementAnalytics():
                     tickmode="sync",
                 ),
             )
-            fig.update_layout(
-                paper_bgcolor='#f1f1f1',
-            )
+            fig.update_layout(width=600,
+                              height=300,
+                              margin_b=0,
+                              margin_l=0,
+                              margin_r=0,
+                              margin_t=0,
+                              paper_bgcolor='rgba(0, 0, 0, 0)',
+                              )
+            div = opy.plot(fig, auto_open=False, output_type='div')
+            return div
 
-            fig.write_image("website/plots_store/plot_product_units_discount.jpg")
+            #fig.write_image("website/plots_store/plot_product_units_discount.jpg")
 
         def read_document(self, document_path):
             if '.csv' in str(document_path):
@@ -229,13 +264,13 @@ class ProcurementAnalytics():
                                )
                 )
             ])
-            fig.update_layout(width=1000,
+            fig.update_layout(width=850,
                               height=300,
                               margin_b=0,
                               margin_l=0,
                               margin_r=0,
                               margin_t=0,
-                              paper_bgcolor='#f1f1f1',
+                              paper_bgcolor='rgba(0, 0, 0, 0)',
                               )
             fig.write_image("website/plots_store/plot_descriptive_statistics.jpg", scale=5)
 
@@ -249,17 +284,19 @@ class ProcurementAnalytics():
             df_subset = df_subset.reset_index().rename_axis(None, axis=1)
 
             fig = px.bar(df_subset, x="Sales", y="Product", color='Country', orientation='h',
-                         hover_data=["Sales", "Country"],
-                         height=400,
+                         hover_data=["Sales", "Country"]
                          )
-            fig.update_layout(margin_b=0,
+            #fig.write_image("website/plots_store/plot_product_sales.jpg")
+            fig.update_layout(width=500,
+                              height=300,
+                              margin_b=0,
                               margin_l=0,
                               margin_r=0,
                               margin_t=0,
-                              paper_bgcolor='#f1f1f1',
+                              paper_bgcolor='rgba(0, 0, 0, 0)',
                               )
-
-            fig.write_image("website/plots_store/plot_product_sales.jpg")
+            div = opy.plot(fig, auto_open=False, output_type='div')
+            return div
 
 
     except Exception as e:
