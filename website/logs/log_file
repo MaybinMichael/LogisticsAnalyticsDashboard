@@ -588,3 +588,6 @@ margin_b
 22:30:17,110 django.utils.autoreload INFO C:\Users\HP\PycharmProjects\pythonProject\LogisticsAnalyticsDashboard\website\analytics.py changed, reloading.
 22:32:29,591 django.utils.autoreload INFO C:\Users\HP\PycharmProjects\pythonProject\LogisticsAnalyticsDashboard\website\analytics.py changed, reloading.
 22:33:09,141 django.utils.autoreload INFO C:\Users\HP\PycharmProjects\pythonProject\LogisticsAnalyticsDashboard\website\analytics.py changed, reloading.
+22:37:01,28 django.utils.autoreload INFO C:\Users\HP\PycharmProjects\pythonProject\LogisticsAnalyticsDashboard\website\analytics.py changed, reloading.
+22:37:48,703 django.utils.autoreload INFO C:\Users\HP\PycharmProjects\pythonProject\LogisticsAnalyticsDashboard\website\analytics.py changed, reloading.
+22:44:32,409 django.utils.autoreload INFO C:\Users\HP\PycharmProjects\pythonProject\LogisticsAnalyticsDashboard\website\analytics.py changed, reloading.

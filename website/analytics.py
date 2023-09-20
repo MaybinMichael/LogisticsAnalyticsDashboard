@@ -110,7 +110,7 @@ class ProcurementAnalytics():
             fig.update_layout(
                 paper_bgcolor='#f1f1f1',
             )
-            fig.update_layout(width=600,
+            fig.update_layout(width=700,
                               height=187,
                               margin_b=0,
                               margin_l=0,
