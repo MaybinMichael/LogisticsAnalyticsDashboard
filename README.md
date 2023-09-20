@@ -7,12 +7,13 @@ Functionalities:
   Descriptive statistics of continuous features and categorical features are available. Downloading is enabled.
   User can post queries on the app.
 
-Video demonstration of the app is available in the following link: xxxx
+Video demonstration of the app is available in the following link: (https://www.youtube.com/watch?v=2mgeeMDgi4Q&ab_channel=maybinmichael)
+
+Sample input files are available in the Input folder (path: website>Input)
 
 This app is developed using Python 3.9 version.
 
 Instructions for launching the app:
-
-Install Python 3.9 and dependencies mentioned in requirement.txt
-Download all files given in the repositories
-Execute the following command in terminal to launch the app: python manage.py runserver
+  Install Python 3.9 and dependencies mentioned in requirement.txt
+  Download all files given in the repositories
+  Execute the following command in terminal to launch the app: python manage.py runserver
